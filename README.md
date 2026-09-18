@@ -1,4 +1,4 @@
-# More doctest practice [![](https://github.com/guisabellla/doctest-pytest-practice/actions?query=workflow%3Atests)](https://github.com/guisabellla/doctest-pytest-practice/workflows/tests/badge.svg)
+# More doctest practice [![](https://github.com/guisabellla/doctest-pytest-practice/workflows/tests/badge.svg)](https://github.com/guisabellla/doctest-pytest-practice/actions?query=workflow%3Atests)
 
 The purpose of this assignment is to help develop good coding habits.
 
