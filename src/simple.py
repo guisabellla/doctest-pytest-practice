@@ -20,7 +20,7 @@ def evens(n):
     >>> evens(-1)
     []
     '''
-
+    return list(range(0, n + 1, 2))
 
 def threes(n):
     '''
@@ -37,6 +37,11 @@ def threes(n):
     >>> threes(50)
     [3, 13, 23, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 43]
     '''
+    accumulator = []
+    for x in range(n + 1):
+        if '3' in str(x):
+            accumulator.append(x)
+    return accumulator
 
 
 def small_words(text):
@@ -55,6 +60,11 @@ def small_words(text):
     >>> small_words('a big word is bad')
     ['a', 'big', 'word', 'is', 'bad']
     '''
+    accumulator = []
+    for word in text.split():
+        if len(word) < 5:
+            accumulator.append(word)
+    return accumulator
 
 
 def squares(n):
@@ -71,6 +81,10 @@ def squares(n):
     >>> squares(10)
     [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
     '''
+    accumulator = []
+    for x in range(1, n + 1):
+        accumulator.append(x * x)
+    return accumulator
 
 
 def lengths(strings):
@@ -84,3 +98,7 @@ def lengths(strings):
     >>> lengths(['this','is','a','test'])
     [4, 2, 1, 4]
     '''
+    accumulator = []
+    for string in strings:
+        accumulator.append(len(string))
+    return accumulator
