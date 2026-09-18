@@ -81,7 +81,10 @@ def compile_bold_stars(line):
                 i += 2
             else:
                 accumulator += '**'
-                i += 1
+                i += 2
+        else:
+            accumulator += line[i]
+            i += 1
     return accumulator
 
 
@@ -112,9 +115,9 @@ def compile_links(line):
     i = 0
     while i < len(line):
         if line [i] == '[':
-            close_bracket = line.find('[', i + 1)
+            close_bracket = line.find(']', i + 1)
             if close_bracket != -1 and close_bracket +1 < len(line) and line[close_bracket + 1] == '(':
-                close paren = line.find(')', close_bracket +2)
+                close_paren = line.find(')', close_bracket + 2 )
                 if close_paren != -1:
                     text = line[i +1:close_bracket]
                     url = line[close_bracket + 2:close_paren]
