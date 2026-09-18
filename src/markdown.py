@@ -26,7 +26,22 @@ def compile_italic_underscore(line):
     >>> compile_italic_underscore('')
     ''
     '''
-    return line
+    accumulator = ''
+    italic = False
+
+    for i, x in enumerate(line):
+        if x == '_':
+            if italic:
+                accumulator += '</i>'
+                italic = False
+            elif '_' in line[i+1:]:
+                accumulator += '<i>'
+                italic = True
+            else:
+                accumulator += '_'
+        else:
+            accumulator += x
+    return accumulator
 
 
 def compile_bold_stars(line):
@@ -50,7 +65,24 @@ def compile_bold_stars(line):
     >>> compile_bold_stars('***')
     '***'
     '''
-    return line
+    accumulator = ''
+    i = 0
+    bold = False
+
+    while i < len(line):
+        if line[i:i+2] == '**':
+            if bold:
+                accumulator += '</b>'
+                bold = False
+                i += 2
+            elif '**' in line[i+2:]:
+                accumulator += '<b>'
+                bold = True
+                i += 2
+            else:
+                accumulator += '**'
+                i += 1
+    return accumulator
 
 
 def compile_links(line):
@@ -76,4 +108,19 @@ def compile_links(line):
     >>> compile_links('nothing here](oops)')
     'nothing here](oops)'
     '''
-    return line
+    accumulator = ''
+    i = 0
+    while i < len(line):
+        if line [i] == '[':
+            close_bracket = line.find('[', i + 1)
+            if close_bracket != -1 and close_bracket +1 < len(line) and line[close_bracket + 1] == '(':
+                close paren = line.find(')', close_bracket +2)
+                if close_paren != -1:
+                    text = line[i +1:close_bracket]
+                    url = line[close_bracket + 2:close_paren]
+                    accumulator += '<a href="' + url + '">' + text + '</a>'
+                    i = close_paren +1
+                    continue
+        accumulator += line[i]
+        i += 1
+    return accumulator
